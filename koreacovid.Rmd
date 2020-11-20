@@ -1,7 +1,7 @@
 ---
 title: "covid 19"
-author: "Dr K"
-date: "5/2/2020"
+author: "Jennifer Alavrez"
+date: "October 2020"
 output:
   html_document: default
   pdf_document: default
@@ -15,6 +15,7 @@ require(tigerstats)
 require(lubridate)
 kRdata <- read.csv(file = 'kRdata.csv')
 ```
+
 ### Data is from the Patient_Info dataset from South Korea 1 Jan to 1 May 
 ### This is contained in a downloadable zip file from kaggle
 
@@ -46,12 +47,23 @@ barchartGC(~result + Sex,data=kRdata, main ="Frequency Bar Chart")
 ### this bar chart is displaying in total frequency terms our data.  Clearly there are a lot less dead people than alive people as is reflected by the sizes of the bars in the display.  
 
 
-
-
+```{r}
+barchartGC(~result + Sex,data=kRdata, type ="percent" , main="Percent Bar Chart")
+```
+The percent of females dying is less than males.  
+The percent of males with the virus is less than females, but the rate of males dying is more than females.  
 
   
 ## Numerical results
 
+```{r}
+table1 <- xtabs(~result + Sex,data=kRdata)
+rowPerc(table1)
+colPerc(table1)
+```
+
+Female alive is 56 percent and males alive is 44 percent.  
+Female dead is 36 percent and males dead is 64 percent.  
 
 ## Inferential results 
 
